@@ -3,15 +3,19 @@ const { db } = require("../database/mongodb");
 const User = require("../model/UserModel");
 const firebaseDB = require("../database/firebasedb");
 
-//controller for getting data from mysql
+//controller for getting data from mysql database
 const getDataFromMySql = async (req, res) => {
-  mysqldb.query("SELECT * from user", (error, result) => {
-    if (error) {
-      console.log(error);
-    } else {
-      res.send(result);
-    }
-  });
+  try {
+    mysqldb.query("SELECT * from user", (error, result) => {
+      if (error) {
+        console.log(error);
+      } else {
+        res.send(result);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 //controller for getting data from mongodb
