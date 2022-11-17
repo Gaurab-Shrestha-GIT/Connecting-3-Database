@@ -1,0 +1,73 @@
+-->For MySQL
+	For creating a new schema in mysql workbench
+	Create Schema portpro_test;
+
+
+	For creating a new table
+	Create Table portpro_test.user (
+	id int auto_increment,
+	name varchar(255) not null,
+	profilePic varchar(255) not null,
+	createdAt timestamp not null default current_timestamp,
+	updatedAt datetime not null default current_timestamp on update current_timestamp,
+	primary key (id)
+	);
+
+
+	For displaying all data from the table
+	Select * from portpro_test.user;
+
+
+-->For MongoDB
+	For inserting data
+	const data = new User(req.body);
+	data.save((err, datasave) => {
+    	if (err) {
+      	console.log(err);
+    	} else {
+      	console.log(datasave);
+    	}
+  	});
+
+
+	User Model for the MongoDB
+	const userSchema = new mongoose.Schema({
+ 	name: {
+    	type: String,
+    	required: true,
+  	},
+  	profilePic: {
+    	type: String,
+    	required: true,
+  	},
+
+	});
+	userSchema.set("timestamps", true);
+
+
+	For displaying all data from the collection
+ 	User.find({}, (err, result) => {
+      	if (err) {
+        res.send(err);
+      	}
+      	res.json(result);
+
+
+-->For Firebase
+	For inserting data
+  	const docRef = db.collection("Users").doc(profilePic);
+
+  	await docRef.set({
+    	name: name,
+    	profilePic: profilePic,
+    	createdAt: new Date(),
+    	updatedAt: FieldValue.serverTimestamp(),
+  	});
+
+
+	For displaying all data from the collection
+   	const data = firebaseDB.collection("Users");
+    	const snapshot = await data.get();
+    	const allData = snapshot.docs.map((doc) => {
+      	return doc.data();
+    	});
