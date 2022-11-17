@@ -1,0 +1,17 @@
+const express = require("express");
+const app = express();
+const cors = require("cors");
+const morgan = require("morgan");
+
+app.use(cors());
+app.use(express.json());
+app.use(morgan("tiny"));
+
+// app.set("view engine", "ejs");
+// app.set("views", "./views/");
+
+app.use("/", require("./routes/router"));
+
+app.listen(5000, () => {
+  console.log("Server is running on port 5000.");
+});
