@@ -7,9 +7,6 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("tiny"));
 
-// app.set("view engine", "ejs");
-// app.set("views", "./views/");
-
 app.use("/", require("./routes/router"));
 
 app.listen(5000, () => {
